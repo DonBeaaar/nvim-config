@@ -42,6 +42,7 @@ let g:airline_theme='onehalfdark'
 " lightline
 let g:lightline = { 'colorscheme': 'onehalfdark' }
 let g:airline#extensions#tabline#fnamemod = ':t'
+let NERDTreeQuitOnOpen=1
 
 lua require'nvim-treesitter.configs'.setup { highlight = { enable = true} }
 

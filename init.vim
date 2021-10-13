@@ -65,8 +65,7 @@ require('telescope').setup{
   }
 EOF
 
-"nnoremap <leader>nt :NERDTreeFind <CR>
-nnoremap <leader>nt :NERDTreeFind <ESC>:vertical resize +20<CR>
+nnoremap <leader>nt :NERDTreeFind <ESC>
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)

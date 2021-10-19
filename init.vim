@@ -30,6 +30,8 @@ Plug 'tpope/vim-repeat'
 Plug 'alvan/vim-closetag'
 Plug 'APZelos/blamer.nvim'
 Plug 'vim-test/vim-test'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'neovim/nvim-lspconfig'
 
 call plug#end()
 
@@ -50,19 +52,31 @@ nnoremap <leader>w :w<CR>
 nnoremap <leader>wq :wq<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>bd :bdelete<CR>
+nnoremap <leader>vr3 :vertical resize +30<CR>
 
 " Find files using Telescope command-line sugar.
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+
+lua << EOF
+require'lspconfig'.angularls.setup{}
+EOF
 
 lua << EOF
 require('telescope').setup{
-    defaults = {
-      file_ignore_patterns = {"node_modules"}
-    }
-  }
+	defaults = {
+		file_ignore_patterns = {"node_modules"}
+	},
+	extensions = {
+		fzy_native = {
+		    override_generic_sorter = false,
+		    override_file_sorter = true,
+		}
+	}
+}
+require('telescope').load_extension('fzy_native')
 EOF
 
 nnoremap <leader>nt :NERDTreeFind <ESC>

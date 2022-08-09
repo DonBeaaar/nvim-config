@@ -1,0 +1,8 @@
+require('settings')
+require('keymaps')
+require('plugins/packer')
+require('plugins/everforest')
+require('plugins/treesitter')
+require('plugins/gitsigns')
+require('plugins/dap-vscode-js')
+require('plugins/dap-ui')

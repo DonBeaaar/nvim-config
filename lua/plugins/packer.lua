@@ -44,7 +44,19 @@ return require('packer').startup(function(use)
 		run = "npm install --legacy-peer-deps && npm run compile" 
 	}
 	use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
-	
+	use 'theHamsta/nvim-dap-virtual-text'
+	use { 'anuvyklack/pretty-fold.nvim',
+   config = function()
+      require('pretty-fold').setup()
+   end
+	}
+	use { 'anuvyklack/fold-preview.nvim',
+   requires = 'anuvyklack/keymap-amend.nvim',
+   config = function()
+      require('fold-preview').setup()
+   end
+	}
+	use "ahmedkhalf/project.nvim"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

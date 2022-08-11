@@ -12,6 +12,7 @@ opt.tabstop = 2
 opt.shiftwidth = 2
 opt.wrap = false
 opt.pastetoggle = "<F2"
+vim.o.ignorecase = true
 
 -- UI
 opt.number = true

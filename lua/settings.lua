@@ -1,5 +1,4 @@
 -- Neovim aliases
-local cmd = vim.cmd
 local exe = vim.api.nvim_exec
 local fn = vim.fn
 local g = vim.g

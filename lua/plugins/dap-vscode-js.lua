@@ -34,7 +34,22 @@ for _, language in ipairs({ "typescript", "javascript" }) do
 					"node_internals>/**"
 				},
 				cwd = "${workspaceFolder}"
+			},
+			{
+				name = "Local default",
+				request = "launch",
+				type = "pwa-node",
+				runtimeExecutable = "npm",
+				runtimeArgs = {
+					"run-script",
+					"local-default",
+				},
+				skipFiles = {
+					"node_internals>/**"
+				},
+				cwd = "${workspaceFolder}"
 			}
+
 			
   }
 end

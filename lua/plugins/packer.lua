@@ -57,6 +57,25 @@ return require('packer').startup(function(use)
    end
 	}
 	use "ahmedkhalf/project.nvim"
+	use {
+  "folke/trouble.nvim",
+  requires = "kyazdani42/nvim-web-devicons",
+  config = function()
+    require("trouble").setup {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
+  end
+	}
+	-- Completion
+	use 'hrsh7th/nvim-cmp'
+	use 'hrsh7th/cmp-buffer'
+	use 'hrsh7th/cmp-path'
+	use 'hrsh7th/cmp-nvim-lua'
+	use 'hrsh7th/cmp-nvim-lsp'
+	use 'onsails/lspkind.nvim'
+	use 'saadparwaiz1/cmp_luasnip'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

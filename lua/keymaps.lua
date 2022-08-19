@@ -27,17 +27,22 @@ km.set("n", "<leader>fh", function() require("telescope.builtin").help_tags() en
 -- Fugitive
 map('n', '<leader>g', ':G<CR>', default_opts)
 
+-- Trouble
+km.set("n", "<leader>xx", ":TroubleToggle<CR>", default_opts)
+
 -- Debugging
 km.set('n','<F5>',":lua require'dap'.continue()<CR>", default_opts)
 km.set('n','<F6>',":lua require'dap'.step_over()<CR>", default_opts)
 km.set('n','<F7>',":lua require'dap'.step_into()<CR>", default_opts)
 km.set('n','<F8>',":lua require'dap'.step_out()<CR>", default_opts)
 km.set('n','<F9>',":lua require'dap'.disconnect()<CR>", default_opts)
-km.set('n','<leader>b',":lua require'dap'.toggle_breakpint()<CR>", default_opts)
-km.set('n','<leader>do',":lua require'dap'.repl.open()<CR>", default_opts)
+km.set('n','<leader>b',":lua require'dap'.toggle_breakpoint()<CR>", default_opts)
+-- km.set('n','<leader>do',":lua require'dap'.repl.open()<CR>", default_opts)
+km.set('n','<leader>do',":lua require'dapui'.open()<CR>", default_opts)
+km.set('n','<leader>dc',":lua require'dapui'.close()<CR>", default_opts)
 
 -- Insert Mode
-map('i', '<C-h>', '<left>', default_opts)
+map('i', '<C-h>', '<BS>', default_opts)
 map('i', '<C-j>', '<down>', default_opts)
 map('i', '<C-k>', '<up>', default_opts)
 map('i', '<C-l>', '<right>', default_opts)

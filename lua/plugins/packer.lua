@@ -76,6 +76,27 @@ return require('packer').startup(function(use)
 	use 'hrsh7th/cmp-nvim-lsp'
 	use 'onsails/lspkind.nvim'
 	use 'saadparwaiz1/cmp_luasnip'
+	use({
+		'noib3/nvim-cokeline',
+    requires = 'kyazdani42/nvim-web-devicons', -- If you want devicons
+    config = function()
+      require('cokeline').setup()
+    end
+  })
+	use { 'norcalli/nvim-colorizer.lua',
+   config = function()
+      require('colorizer').setup()
+   end
+	}
+	use {
+  "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x",
+    requires = { 
+      "nvim-lua/plenary.nvim",
+      "kyazdani42/nvim-web-devicons",
+      "MunifTanjim/nui.nvim",
+    }
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

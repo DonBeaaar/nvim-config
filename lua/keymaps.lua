@@ -4,7 +4,7 @@ local map = vim.api.nvim_set_keymap
 local default_opts = { noremap = true, silent = true }
 local cmd = vim.cmd
 
-vim.g.mapleader = ' '
+vim.g.mapleader = ';'
 local km = vim.keymap
 
 -- Normal Mode
@@ -52,8 +52,14 @@ for i = 1,9 do
   map('n', ('<Leader>%s'):format(i), ('<Plug>(cokeline-focus-%s)'):format(i), { silent = true })
 end
 
--- Neotree
-km.set('n','<Leader>n',':Neotree<CR>', default_opts)
+-- Nvim-tree
+km.set('n','<Leader>n',':NvimTreeToggle<CR>', default_opts)
+
+-- Hop
+map('', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
+map('', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
+map('', 't', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>", {})
+map('', 'T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>", {})
 
 -- Insert Mode
 map('i', '<C-h>', '<BS>', default_opts)

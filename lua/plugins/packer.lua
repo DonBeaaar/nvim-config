@@ -88,16 +88,22 @@ return require('packer').startup(function(use)
       require('colorizer').setup()
    end
 	}
+	use 'jose-elias-alvarez/null-ls.nvim'
+	use 'MunifTanjim/eslint.nvim'
 	use {
-  "nvim-neo-tree/neo-tree.nvim",
-    branch = "v2.x",
-    requires = { 
-      "nvim-lua/plenary.nvim",
-      "kyazdani42/nvim-web-devicons",
-      "MunifTanjim/nui.nvim",
-    }
-  }
-
+		'kyazdani42/nvim-tree.lua',
+		requires = {
+			'kyazdani42/nvim-web-devicons', -- optional, for file icons
+		},
+		tag = 'nightly' -- optional, updated every week. (see issue #1193)
+	}
+	use {
+		'phaazon/hop.nvim',
+		branch = 'v2', -- optional but strongly recommended
+		config = function()
+			require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+		end
+	}
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then

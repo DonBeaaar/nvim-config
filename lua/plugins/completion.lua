@@ -38,7 +38,7 @@ cmp.setup {
     { name = "nvim_lsp" },
     { name = "path" },
     { name = "luasnip" },
-    { name = "buffer", keyword_length = 5 },
+    { name = "buffer"},
   },
   sorting = {
     -- TODO: Would be cool to add stuff like "See variable names before method names" in rust, or something like that.

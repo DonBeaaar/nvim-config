@@ -76,13 +76,13 @@ return require('packer').startup(function(use)
 	use 'hrsh7th/cmp-nvim-lsp'
 	use 'onsails/lspkind.nvim'
 	use 'saadparwaiz1/cmp_luasnip'
-	use({
-		'noib3/nvim-cokeline',
-    requires = 'kyazdani42/nvim-web-devicons', -- If you want devicons
-    config = function()
-      require('cokeline').setup()
-    end
-  })
+	-- use({
+	-- 	'noib3/nvim-cokeline',
+ --    requires = 'kyazdani42/nvim-web-devicons', -- If you want devicons
+ --    config = function()
+ --      require('cokeline').setup()
+ --    end
+ --  })
 	use { 'norcalli/nvim-colorizer.lua',
    config = function()
       require('colorizer').setup()
@@ -104,6 +104,17 @@ return require('packer').startup(function(use)
 			require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
 		end
 	}
+	use {
+		'nvim-lualine/lualine.nvim',
+		requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+	}
+	use 'folke/tokyonight.nvim'
+	use {
+		'ThePrimeagen/harpoon',
+		requires = { 'nvim-lua/plenary.nvim', 'nvim-lua/popup.nvim' }
+	}
+	use 'xiyaowong/nvim-transparent'
+	use 'David-Kunz/jester'
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then

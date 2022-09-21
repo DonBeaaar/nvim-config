@@ -6,13 +6,14 @@ local lsp_flags = {
   debounce_text_changes = 50,
 }
 
-local on_attach = function()
+local on_attach = function(client)
 		vim.keymap.set("n","K",vim.lsp.buf.hover, {buffer=0})
 		vim.keymap.set("n","gd",vim.lsp.buf.definition, {buffer=0})
 		vim.keymap.set("n","gD",vim.lsp.buf.declaration, {buffer=0})
 		vim.keymap.set("n","gt",vim.lsp.buf.type_definition, {buffer=0})
 		vim.keymap.set("n","gi",vim.lsp.buf.implementation, {buffer=0})
-	end
+		client.server_capabilities.documentFormattingProvider = false
+end
 
 require('lspconfig').tsserver.setup{
 	on_attach = on_attach,

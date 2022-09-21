@@ -69,3 +69,6 @@ map('i', '<C-l>', '<right>', default_opts)
 
 
 cmd [[set pastetoggle=<F2>]]
+
+-- Harpoon
+km.set('n','<leader>ss', ':lua require("harpoon.ui").toggle_quick_menu()<CR>', default_opts)

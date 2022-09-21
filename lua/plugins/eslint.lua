@@ -1,7 +1,14 @@
 local null_ls = require("null-ls")
 local eslint = require("eslint")
 
-null_ls.setup()
+null_ls.setup({
+	sources = {
+		-- require("null-ls").builtins.formatting.stylua,
+		require("null-ls").builtins.formatting.eslint,
+		require("null-ls").builtins.diagnostics.eslint,
+		-- require("null-ls").builtins.completion.spell,
+	},
+})
 
 eslint.setup({
   bin = 'eslint', -- or `eslint_d`
@@ -22,3 +29,6 @@ eslint.setup({
     run_on = "type", -- or `save`
   },
 })
+
+-- vim.cmd [[command! Format execute 'lua vim.lsp.buf.format({ async = true }) ']]
+vim.cmd [[command! Format execute 'lua vim.lsp.buf.formatting_sync()']]

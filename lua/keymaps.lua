@@ -42,10 +42,10 @@ km.set('n','<leader>do',":lua require'dapui'.open()<CR>", default_opts)
 km.set('n','<leader>dc',":lua require'dapui'.close()<CR>", default_opts)
 
 -- Cokeline
-map('n', '<S-Tab>',   '<Plug>(cokeline-focus-prev)',  { silent = true })
-map('n', '<Tab>',     '<Plug>(cokeline-focus-next)',  { silent = true })
-map('n', '<Leader>p', '<Plug>(cokeline-switch-prev)', { silent = true })
-map('n', '<Leader>n', '<Plug>(cokeline-switch-next)', { silent = true })
+-- map('n', '<S-Tab>',   '<Plug>(cokeline-focus-prev)',  { silent = true })
+-- map('n', '<Tab>',     '<Plug>(cokeline-focus-next)',  { silent = true })
+-- map('n', '<Leader>p', '<Plug>(cokeline-switch-prev)', { silent = true })
+-- map('n', '<Leader>n', '<Plug>(cokeline-switch-next)', { silent = true })
 
 for i = 1,9 do
   -- map('n', ('<F%s>'):format(i),      ('<Plug>(cokeline-focus-%s)'):format(i),  { silent = true })

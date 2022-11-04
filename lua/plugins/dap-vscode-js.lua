@@ -33,7 +33,11 @@ for _, language in ipairs({ "typescript", "javascript" }) do
 				skipFiles = {
 					"node_internals>/**"
 				},
-				cwd = "${workspaceFolder}"
+				cwd = "${workspaceFolder}",
+				resolveSourceMapLocations = {
+					"${workspaceFolder}/**",
+					"!**/node_modules/**"
+				}
 			},
 			{
 				name = "Local default",
@@ -47,7 +51,11 @@ for _, language in ipairs({ "typescript", "javascript" }) do
 				skipFiles = {
 					"node_internals>/**"
 				},
-				cwd = "${workspaceFolder}"
+				cwd = "${workspaceFolder}",
+				resolveSourceMapLocations = {
+					"${workspaceFolder}/**",
+					"!**/node_modules/**"
+				}
 			}
 
 			

@@ -115,6 +115,7 @@ return require('packer').startup(function(use)
 	}
 	use 'xiyaowong/nvim-transparent'
 	use 'David-Kunz/jester'
+	use 'gbprod/nord.nvim'
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then

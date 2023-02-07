@@ -56,6 +56,24 @@ for _, language in ipairs({ "typescript", "javascript" }) do
 					"${workspaceFolder}/**",
 					"!**/node_modules/**"
 				}
+			},
+			{
+				name = "Local env file",
+				request = "launch",
+				type = "pwa-node",
+				runtimeExecutable = "npm",
+				runtimeArgs = {
+					"run-script",
+					"local-env-file",
+				},
+				skipFiles = {
+					"node_internals>/**"
+				},
+				cwd = "${workspaceFolder}",
+				resolveSourceMapLocations = {
+					"${workspaceFolder}/**",
+					"!**/node_modules/**"
+				}
 			}
 
 			

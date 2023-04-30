@@ -24,7 +24,7 @@ km.set("n", "<leader>fh", function() require("telescope.builtin").help_tags() en
 vim.keymap.set('n', '<leader>ps', function()
 	require('telescope.builtin').grep_string({ search = vim.fn.input("Grep > ") })
 end)
--- km.set("n", "<leader>fg", function() require("telescope").extensions.live_grep_args.live_grep_args() end)
+vim.keymap.set('n', '<leader>m', ':Telescope harpoon marks<CR>')
 
 
 -- Fugitive

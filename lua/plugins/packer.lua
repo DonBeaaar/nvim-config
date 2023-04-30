@@ -98,10 +98,7 @@ return require('packer').startup(function(use)
 		requires = { 'kyazdani42/nvim-web-devicons', opt = true }
 	}
 	use 'folke/tokyonight.nvim'
-	use {
-		'ThePrimeagen/harpoon',
-		requires = { 'nvim-lua/plenary.nvim', 'nvim-lua/popup.nvim' }
-	}
+	use 'ThePrimeagen/harpoon'
 	use 'David-Kunz/jester'
 	use "rebelot/kanagawa.nvim"
 	use 'nikvdp/ejs-syntax'

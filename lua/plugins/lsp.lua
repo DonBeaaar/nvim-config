@@ -1,47 +1,71 @@
-local configs = require('lspconfig.configs')
-local lspconfig = require('lspconfig')
-local util = require 'lspconfig.util'
+local lsp = require('lsp-zero')
 
-local lsp_flags = {
-  debounce_text_changes = 50,
-}
+lsp.preset("recommended")
 
-local on_attach = function(client)
-		vim.keymap.set("n","K",vim.lsp.buf.hover, {buffer=0})
-		vim.keymap.set("n","gd",vim.lsp.buf.definition, {buffer=0})
-		vim.keymap.set("n","gD",vim.lsp.buf.declaration, {buffer=0})
-		vim.keymap.set("n","gt",vim.lsp.buf.type_definition, {buffer=0})
-		vim.keymap.set("n","gi",vim.lsp.buf.implementation, {buffer=0})
-		client.server_capabilities.documentFormattingProvider = false
-end
+lsp.ensure_installed({
+  'tsserver',
+  'rust_analyzer',
+})
 
-require('lspconfig').tsserver.setup{
-	on_attach = on_attach,
-	flags = lsp_flags
-}
-require('lspconfig').gopls.setup{
-	on_attach = on_attach,
-	flags = lsp_flags
-}
+-- Fix Undefined global 'vim'
+lsp.nvim_workspace()
 
-if not configs.golangcilsp then
-  configs.golangcilsp = {
-    default_config = {
-      cmd = { 'golangci-lint-langserver' },
-      -- root_dir = require('lspconfig').util.root_pattern('.git'),
-			root_dir = util.root_pattern('.git', 'go.md', 'main.go'),
-			-- root_dir = function(fname)
-			-- 	return util.root_pattern('.git')(fname)
-			-- end,
-      -- filetypes = { 'go' },
-      init_options = {
-				command = { "golangci-lint", "run", "--enable-all", "--disable", "lll", "--out-format", "json" };
-      },
-			on_attach = function() print('Attach go') end,
-			autostart = true
-    },
-  }
-end
-lspconfig.golangcilsp.setup{
-	filetypes = {'go','gomod'}
-}
+
+local cmp = require('cmp')
+local cmp_select = {behavior = cmp.SelectBehavior.Select}
+local cmp_mappings = lsp.defaults.cmp_mappings({
+  ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+  ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+  ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+  ["<C-Space>"] = cmp.mapping.complete(),
+})
+
+lsp.setup_nvim_cmp({
+  mapping = cmp_mappings
+})
+
+lsp.set_preferences({
+    suggest_lsp_servers = false,
+    sign_icons = {
+        error = 'E',
+        warn = 'W',
+        hint = 'H',
+        info = 'I'
+    }
+})
+
+lsp.on_attach(function(client, bufnr)
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+	local bufopts = { noremap=true, silent=true, buffer=bufnr }
+	
+	vim.keymap.set("n","K",vim.lsp.buf.hover, bufopts)
+	vim.keymap.set("n","gd",vim.lsp.buf.definition,bufopts)
+	vim.keymap.set("n","gD",vim.lsp.buf.declaration,bufopts)
+	vim.keymap.set("n","gt",vim.lsp.buf.type_definition,bufopts)
+	vim.keymap.set("n","gi",vim.lsp.buf.implementation, bufopts)
+
+	vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+	vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+  vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+  vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
+
+  -- local opts = {buffer = bufnr, remap = false}
+
+  -- vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+  -- vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+  -- vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
+  -- vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
+  -- vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
+  -- vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
+  -- vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
+  -- vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
+  -- vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+end)
+
+lsp.setup()
+
+vim.diagnostic.config({
+    virtual_text = true
+})
+

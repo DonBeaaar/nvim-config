@@ -1,12 +1,11 @@
-local cmd = vim.cmd
-local opt = vim.opt
+vim.opt.termguicolors = true
 
-opt.termguicolors = true
+function ColorMyNvim(color) 
+	color = color or "kanagawa-dragon"
+	vim.cmd.colorscheme(color)
 
--- cmd [[set background=dark]]
-vim.g.everforest_background = "medium"
-vim.g.everforest_better_performance = 1
-vim.g.everforest_transparent_background = 1
+	vim.api.nvim_set_hl(0,"Normal", { bg = "none" })
+	vim.api.nvim_set_hl(0,"NormalFloat", { bg = "none" })
+end
 
--- cmd [[colorscheme everforest]]
-cmd [[colorscheme nord]]
+ColorMyNvim()

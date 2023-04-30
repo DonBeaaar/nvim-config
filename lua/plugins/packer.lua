@@ -9,10 +9,8 @@ return require('packer').startup(function(use)
   -- My plugins here
 	use 'wbthomason/packer.nvim'
 	use 'tpope/vim-sensible'
-	use 'sainnhe/everforest'
-	use 'nvim-treesitter/nvim-treesitter'
+	use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 	use 'nvim-lua/plenary.nvim'
-	use 'neovim/nvim-lspconfig'
 	use 'kyazdani42/nvim-web-devicons'
 	use {
 		"nvim-telescope/telescope.nvim",
@@ -69,20 +67,11 @@ return require('packer').startup(function(use)
   end
 	}
 	-- Completion
-	use 'hrsh7th/nvim-cmp'
 	use 'hrsh7th/cmp-buffer'
 	use 'hrsh7th/cmp-path'
 	use 'hrsh7th/cmp-nvim-lua'
-	use 'hrsh7th/cmp-nvim-lsp'
 	use 'onsails/lspkind.nvim'
 	use 'saadparwaiz1/cmp_luasnip'
-	-- use({
-	-- 	'noib3/nvim-cokeline',
- --    requires = 'kyazdani42/nvim-web-devicons', -- If you want devicons
- --    config = function()
- --      require('cokeline').setup()
- --    end
- --  })
 	use { 'norcalli/nvim-colorizer.lua',
    config = function()
       require('colorizer').setup()
@@ -113,11 +102,31 @@ return require('packer').startup(function(use)
 		'ThePrimeagen/harpoon',
 		requires = { 'nvim-lua/plenary.nvim', 'nvim-lua/popup.nvim' }
 	}
-	use 'xiyaowong/nvim-transparent'
 	use 'David-Kunz/jester'
-	use 'gbprod/nord.nvim'
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
+	use "rebelot/kanagawa.nvim"
+	use 'nikvdp/ejs-syntax'
+	use 'tpope/vim-surround'
+	use 'mbbill/undotree'
+	use {
+  'VonHeikemen/lsp-zero.nvim',
+  branch = 'v2.x',
+  requires = {
+			-- LSP Support
+			{'neovim/nvim-lspconfig'},             -- Required
+			{                                      -- Optional
+				'williamboman/mason.nvim',
+				run = function()
+					pcall(vim.cmd, 'MasonUpdate')
+				end,
+			},
+			{'williamboman/mason-lspconfig.nvim'}, -- Optional
+
+			-- Autocompletion
+			{'hrsh7th/nvim-cmp'},     -- Required
+			{'hrsh7th/cmp-nvim-lsp'}, -- Required
+			{'L3MON4D3/LuaSnip'},     -- Required
+		}
+	}
   if packer_bootstrap then
     require('packer').sync()
   end

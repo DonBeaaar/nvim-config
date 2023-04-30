@@ -21,6 +21,9 @@ km.set("n", "<leader>ff", function() require("telescope.builtin").find_files() e
 km.set("n", "<leader>fg", function() require("telescope").extensions.live_grep_args.live_grep_args() end)
 km.set("n", "<leader>l", function() require("telescope.builtin").buffers() end)
 km.set("n", "<leader>fh", function() require("telescope.builtin").help_tags() end)
+vim.keymap.set('n', '<leader>ps', function()
+	require('telescope.builtin').grep_string({ search = vim.fn.input("Grep > ") })
+end)
 -- km.set("n", "<leader>fg", function() require("telescope").extensions.live_grep_args.live_grep_args() end)
 
 

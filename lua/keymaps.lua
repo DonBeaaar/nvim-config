@@ -2,12 +2,10 @@
 --
 local map = vim.api.nvim_set_keymap
 local default_opts = { noremap = true, silent = true }
-local cmd = vim.cmd
 
 vim.g.mapleader = ';'
 local km = vim.keymap
 
--- Normal Mode
 map('n', '<F7>', ':set syntax=on<CR>', default_opts)
 map('n', '<leader>w', ':w<CR>', default_opts)
 map('n', '<leader>q', ':q<CR>', default_opts)
@@ -15,9 +13,23 @@ map('n', '<leader>wq', ':wq<CR>', default_opts)
 map('n', '<leader>h', ':nohl<CR>', default_opts)
 map('n', '<leader>c', ':bdelete<CR>', default_opts)
 
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+
+-- greatest remap ever
+vim.keymap.set("x", "<leader>p", [["_dP]])
+
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
 
 -- Telescope
 km.set("n", "<leader>ff", function() require("telescope.builtin").find_files() end)
+-- vim.api.nvim_set_keymap("n", "<leader>ff", "<Cmd>lua require('telescope').extensions.frecency.frecency({ workspace = 'CWD' })<CR>", {noremap = true, silent = true})
 km.set("n", "<leader>fg", function() require("telescope").extensions.live_grep_args.live_grep_args() end)
 km.set("n", "<leader>l", function() require("telescope.builtin").buffers() end)
 km.set("n", "<leader>fh", function() require("telescope.builtin").help_tags() end)
@@ -71,7 +83,6 @@ map('i', '<C-k>', '<up>', default_opts)
 map('i', '<C-l>', '<right>', default_opts)
 
 
-cmd [[set pastetoggle=<F2>]]
 
 -- Harpoon
 km.set('n','<leader>ss', ':lua require("harpoon.ui").toggle_quick_menu()<CR>', default_opts)

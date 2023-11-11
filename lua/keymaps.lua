@@ -28,15 +28,18 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 
 
 -- Telescope
-km.set("n", "<leader>ff", function() require("telescope.builtin").find_files() end)
--- vim.api.nvim_set_keymap("n", "<leader>ff", "<Cmd>lua require('telescope').extensions.frecency.frecency({ workspace = 'CWD' })<CR>", {noremap = true, silent = true})
-km.set("n", "<leader>fg", function() require("telescope").extensions.live_grep_args.live_grep_args() end)
-km.set("n", "<leader>l", function() require("telescope.builtin").buffers() end)
-km.set("n", "<leader>fh", function() require("telescope.builtin").help_tags() end)
-vim.keymap.set('n', '<leader>ps', function()
-	require('telescope.builtin').grep_string({ search = vim.fn.input("Grep > ") })
-end)
-vim.keymap.set('n', '<leader>m', ':Telescope harpoon marks<CR>')
+vim.keymap.set("n", "<leader>ff", "<cmd>lua require('fzf-lua').files()<CR>", { silent = true })
+vim.keymap.set("n", "<leader>l", "<cmd>lua require('fzf-lua').buffers()<CR>", { silent = true })
+
+-- km.set("n", "<leader>ff", function() require("telescope.builtin").find_files() end)
+-- -- vim.api.nvim_set_keymap("n", "<leader>ff", "<Cmd>lua require('telescope').extensions.frecency.frecency({ workspace = 'CWD' })<CR>", {noremap = true, silent = true})
+-- km.set("n", "<leader>fg", function() require("telescope").extensions.live_grep_args.live_grep_args() end)
+-- km.set("n", "<leader>l", function() require("telescope.builtin").buffers() end)
+-- km.set("n", "<leader>fh", function() require("telescope.builtin").help_tags() end)
+-- vim.keymap.set('n', '<leader>ps', function()
+-- 	require('telescope.builtin').grep_string({ search = vim.fn.input("Grep > ") })
+-- end)
+-- vim.keymap.set('n', '<leader>m', ':Telescope harpoon marks<CR>')
 
 
 -- Fugitive

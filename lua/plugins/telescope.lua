@@ -8,7 +8,7 @@ require("telescope").setup{
         ["<C-h>"] = "which_key",
         ['<c-d>'] = require('telescope.actions').delete_buffer
       } -- i
-    }
+    },
   },
 }
 require("telescope").load_extension('harpoon')

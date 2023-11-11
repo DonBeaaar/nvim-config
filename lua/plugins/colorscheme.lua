@@ -23,3 +23,12 @@ local TelescopeColor = {
 for hl, col in pairs(TelescopeColor) do
     vim.api.nvim_set_hl(0, hl, col)
 end
+
+-- Clean bc numbers
+vim.cmd[[highlight clear LineNr]]
+vim.cmd[[highlight clear SignColumn]]
+
+-- Clean git bc
+vim.cmd[[highlight GitSignsAdd guibg=NONE]]
+vim.cmd[[highlight GitSignsChange guibg=NONE]]
+vim.cmd[[highlight GitSignsDelete guibg=NONE]]
